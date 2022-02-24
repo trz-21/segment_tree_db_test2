@@ -1,5 +1,7 @@
 
 const dbConnector = require('../db/dbconnector');
+//const {StopWatch} = require('stopwatch-node');
+//const sw = new StopWatch();
 
 class TreeReader{
   constructor(){
@@ -28,10 +30,10 @@ class TreeReader{
       };
     }else{
       // 그 외엔 left child와 right child 방문하여 값들 결정
-      //this.sw.start('task11');
+      //sw.start('task11');
       const leftNode = await this.dbConnector.getItemByIDTree(currentNode.left_id);
       const rightNode=  await this.dbConnector.getItemByIDTree(currentNode.right_id);
-      //this.sw.stop();this.sw.prettyPrint();
+      //sw.stop();sw.prettyPrint();
 
       const leftResult = await this._searchRange(leftNode, startTime, endTime);
       const rightResult = await this._searchRange(rightNode, startTime, endTime);

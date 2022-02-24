@@ -70,6 +70,7 @@ class TreeWriter{
     const newRoot = {
       ...root,
       id: 'root',
+      is_full: false,
       left_id: root.id,
       right_id: newNodesWithChild[0].id,
     };
@@ -80,6 +81,7 @@ class TreeWriter{
   }
 
   async _addItem(currentNode, item){
+    
     //leaf노드일 경우 value update하고 리턴
     if(!currentNode.left_id && !currentNode.right_id){
       const newNode = {

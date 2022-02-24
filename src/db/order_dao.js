@@ -9,7 +9,7 @@ class OrderDAO {
         {
           name: 'timestamptz',
           parse: (value) => value
-            ? `${new Date(Date.parse(value)).toISOString().split('.')[0]}Z`
+            ? `${new Date(Date.parse(value)).toISOString()}`
             : null
         }
       ]

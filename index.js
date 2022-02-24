@@ -7,14 +7,15 @@ const treeWriter = new TreeWriter();
 const {StopWatch} = require('stopwatch-node');
 const sw = new StopWatch();
 
-const a = async () => {
+const a = (async () => {
 	const now = new Date();
 	now.setMilliseconds(0);
-	for(let i = 0; i < 10000000; i ++){
-		now.setMilliseconds(now.getMilliseconds() + 50);
+	for(let i = 0; i < 100000000; i ++){
+		if(i % 10000 === 0) console.log(i);
+		now.setMilliseconds(now.getMilliseconds() + 100);
 
 		if(Math.floor(Math.random() * 100) > 98){
-			now.setSeconds(now.getMinutes() + 1);
+			now.setSeconds(now.getSeconds() + 1);
 			now.setMilliseconds(0);
 			continue;
 		}
@@ -38,14 +39,14 @@ const a = async () => {
 		await treeWriter.addItem(treeItem);
 		
 	}
-};
+});
 
-(async () => {
+const b = (async () => {
 	sw.start('range');
-	console.log(await dbConnector.getSumOfExample('2022-02-23T08:42:00Z', '2022-02-23T08:42:20Z'));
+	console.log(await dbConnector.getSumOfExample('2022-02-24T06:05:30.100Z', '2022-02-24T06:35:30.100Z'));
 	sw.stop();
 	sw.start('tree');
-	console.log(await treeReader.searchRange('2022-02-23T08:42:00ZZ', '2022-02-23T08:42:20Z'));
+	console.log(await treeReader.searchRange('2022-02-24T06:05:30.100Z', '2022-02-24T06:35:30.100Z'));
 	sw.stop();
 	sw.prettyPrint();
 })();

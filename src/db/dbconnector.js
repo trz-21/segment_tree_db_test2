@@ -59,7 +59,7 @@ class DBConnector {
       VALUES (
         ${item.id}, ${item.right_id || null}, ${item.left_id || null}, ${item.is_full || false},
         ${item.start_time || null}, ${item.end_time || null}, 
-        ${item.val || null})
+        ${(item.val == undefined? null : item.val)})
       ON CONFLICT (id) DO
       UPDATE SET
         right_id = ${item.right_id || null},
@@ -67,7 +67,7 @@ class DBConnector {
         is_full = ${item.is_full || false},
         start_time = ${item.start_time || null},
         end_time = ${item.end_time || null},
-        val = ${item.val || null}
+        val = ${(item.val == undefined? null : item.val)}
     `];
 
     await this.dao.queryWithTransaction(_sql);
