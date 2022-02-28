@@ -2,7 +2,7 @@
 const { createPool } = require('slonik');
 const connectionStr = 'postgres://kimtaeyoon:(rkskekfk)zz@localhost:5432/temp11';
 
-class OrderDAO {
+class DAO {
 	constructor () {
 		this.pool = createPool(connectionStr, {
       typeParsers: [
@@ -43,4 +43,4 @@ class OrderDAO {
 	}
 }
 
-module.exports = new OrderDAO();
+module.exports = new DAO();

@@ -7,10 +7,11 @@ const treeWriter = new TreeWriter();
 const {StopWatch} = require('stopwatch-node');
 const sw = new StopWatch();
 
-const a = (async () => {
+//generate example
+(async () => {
 	const now = new Date();
 	now.setMilliseconds(0);
-	for(let i = 0; i < 100000000; i ++){
+	for(let i = 0; i < 1000000; i ++){
 		if(i % 10000 === 0) console.log(i);
 		now.setMilliseconds(now.getMilliseconds() + 100);
 
@@ -41,7 +42,8 @@ const a = (async () => {
 	}
 });
 
-const b = (async () => {
+//search test
+(async () => {
 	sw.start('range');
 	console.log(await dbConnector.getSumOfExample('2022-02-24T06:05:30.100Z', '2022-02-24T06:35:30.100Z'));
 	sw.stop();
