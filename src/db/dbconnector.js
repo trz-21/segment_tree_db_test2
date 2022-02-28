@@ -1,7 +1,7 @@
 
 const { v4: uuidv4 } = require('uuid');
 const { sql } = require('slonik');
-const dao = require('./order_dao');
+const dao = require('./dao');
 
 class DBConnector {
 	constructor () {
